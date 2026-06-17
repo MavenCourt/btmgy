@@ -1,73 +1,107 @@
-# Welcome to your Lovable project
+# Bethel Tabernacle Ministries Website
 
-## Project info
+Official website project for Bethel Tabernacle Ministries, a Christian church ministry based at 74 Princess Street, Lodge, Georgetown, Guyana.
 
-**URL**: https://lovable.dev/projects/860a94fc-a38d-4f70-9fba-8cdbd0c07661
+The site was originally started from a Lovable export, but the current project has been rebuilt as an editable Vite, React, TypeScript, and Tailwind CSS website.
 
-## How can I edit this code?
+## Website Structure
 
-There are several ways of editing your application.
+- Home
+- About
+- Leadership
+- Ministries
+- Service Times
+- Events
+- Sermons / Media
+- Gallery
+- Give
+- Prayer Request
+- Contact
+- Plan Your Visit
 
-**Use Lovable**
+## Editing Church Content
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/860a94fc-a38d-4f70-9fba-8cdbd0c07661) and start prompting.
+Most church-specific content is centralized here:
 
-Changes made via Lovable will be committed automatically to this repo.
+```text
+src/data/church.ts
+```
 
-**Use your preferred IDE**
+Edit that file to update:
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- Church contact details
+- Vision, mission, purpose, and history
+- Leadership names and responsibilities
+- Ministries and department leaders
+- Service times
+- Annual calendar focus
+- Giving page wording
+- Gallery collections
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+Page files live in:
 
-Follow these steps:
+```text
+src/pages
+```
+
+Shared layout components live in:
+
+```text
+src/components
+```
+
+## Local Development
+
+Install dependencies:
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+npm install
+```
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+Start the local development server:
 
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+```sh
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+The site usually opens at:
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```text
+http://127.0.0.1:8080/
+```
 
-**Use GitHub Codespaces**
+## Build
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+Create a production build:
 
-## What technologies are used for this project?
+```sh
+npm run build
+```
 
-This project is built with:
+The built site is output to:
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+```text
+dist
+```
 
-## How can I deploy this project?
+## Deployment
 
-Simply open [Lovable](https://lovable.dev/projects/860a94fc-a38d-4f70-9fba-8cdbd0c07661) and click on Share -> Publish.
+Recommended deployment options:
 
-## Can I connect a custom domain to my Lovable project?
+- Vercel
+- Netlify
+- Cloudflare Pages
 
-Yes, you can!
+Use these settings:
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+```text
+Framework: Vite
+Build command: npm run build
+Output directory: dist
+```
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+## Notes
+
+- Forms currently open addressed email drafts, which keeps the Phase 1 site simple and static-host friendly.
+- A future phase can add database-backed forms, member login, document center, event registration, and online giving integrations.
+- Private church source documents and original ZIP exports should stay local unless leadership intentionally chooses to store them in a private repository.
