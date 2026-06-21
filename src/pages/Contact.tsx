@@ -83,7 +83,7 @@ const Contact = () => {
   ];
 
   return (
-    <div className="min-h-screen pt-20">
+    <main className="min-h-screen">
       <Hero
         title="Contact Us"
         subtitle="We Would Love to Hear From You"
@@ -121,7 +121,7 @@ const Contact = () => {
       <section className="py-16 bg-secondary/40">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            <Card className="p-8 shadow-elegant border-2">
+            <Card className="form-panel">
               <h2 className="mb-6">Send a Message</h2>
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div>
@@ -232,7 +232,7 @@ const Contact = () => {
           </div>
         </div>
       </section>
-    </div>
+    </main>
   );
 };
 

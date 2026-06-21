@@ -31,7 +31,7 @@ const serviceFeatures = [
 
 const Services = () => {
   return (
-    <div className="min-h-screen pt-20">
+    <main className="min-h-screen">
       <Hero
         title="Service Times"
         subtitle="Join Us for Worship"
@@ -119,7 +119,7 @@ const Services = () => {
           </div>
         </div>
       </section>
-    </div>
+    </main>
   );
 };
 

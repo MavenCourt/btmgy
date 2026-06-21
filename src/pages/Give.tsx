@@ -1,128 +1,83 @@
+import { ArrowUpRight, Building2, Gift, HandCoins, Heart, Mail, ShieldCheck } from "lucide-react";
 import { Link } from "react-router-dom";
-import { Building2, Gift, HandCoins, Heart, Mail, ShieldCheck } from "lucide-react";
 import Hero from "@/components/Hero";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import { church, givingPurposes } from "@/data/church";
 
 const givingMethods = [
-  {
-    icon: HandCoins,
-    title: "In Person",
-    description: "Give during a worship service or church program through the approved offering process.",
-  },
-  {
-    icon: Building2,
-    title: "Bank Transfer",
-    description: "Contact the church office for current approved transfer instructions.",
-  },
-  {
-    icon: Gift,
-    title: "MMG / Mobile Giving",
-    description: "Mobile giving options may be confirmed directly with the church office.",
-  },
-  {
-    icon: Mail,
-    title: "Giving Questions",
-    description: "Email or call the office for finance-related guidance and receipts.",
-  },
+  { icon: HandCoins, title: "In Person", description: "Give during worship services and church programs through the approved offering process." },
+  { icon: Building2, title: "Bank Transfer", description: "Contact the church office for the current approved transfer instructions." },
+  { icon: Gift, title: "MMG / Mobile", description: "Confirm available mobile giving details directly with the church office." },
+  { icon: Mail, title: "Receipts & Help", description: "Email or call the office for finance-related guidance and giving receipts." },
 ];
 
 const Give = () => {
   return (
-    <div className="min-h-screen pt-20">
+    <main className="min-h-screen">
       <Hero
-        title="Give"
-        subtitle="Generosity and Stewardship"
+        title="Give to the Mission"
+        subtitle="Generosity · Worship · Stewardship"
         description="Your faithful giving supports worship, discipleship, care, evangelism, community programs, and the ongoing ministry of Bethel Tabernacle Ministries."
         image={church.assets.churchExterior}
-        primaryCTA={{ text: "Contact for Giving Details", link: "/contact" }}
-        secondaryCTA={{ text: "Learn About Our Mission", link: "/about" }}
+        primaryCTA={{ text: "Request Giving Details", link: "/contact" }}
+        secondaryCTA={{ text: "Our Mission", link: "/about" }}
       />
 
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center mb-12">
-            <div className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-semibold mb-4">
-              Biblical Giving
-            </div>
-            <h2 className="mb-5">Why We Give</h2>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Bethel teaches faithful stewardship through tithes, offerings, donations, and designated gifts handled according to church financial procedures and leadership-approved controls.
-            </p>
+      <section className="section-shell bg-white">
+        <div className="section-inner grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
+          <div>
+            <p className="eyebrow">Why we give</p>
+            <h2 className="display-heading mb-7">Generosity makes ministry possible.</h2>
+            <p className="mb-7 text-lg leading-8 text-muted-foreground">Bethel teaches faithful stewardship through tithes, offerings, donations, and designated gifts handled according to church financial procedures and leadership-approved controls.</p>
+            <Button asChild variant="default" size="lg"><Link to="/contact">Request instructions <ArrowUpRight /></Link></Button>
           </div>
+          <div className="media-frame aspect-[4/3]"><img src={church.assets.heroWorship} alt="Worship at Bethel Tabernacle Ministries" /></div>
+        </div>
+      </section>
 
-          <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6 max-w-6xl mx-auto">
-            {givingPurposes.map((purpose) => (
-              <Card key={purpose.title} className="p-6 border-2 shadow-card hover:shadow-elegant transition-smooth">
-                <Heart className="h-8 w-8 text-primary mb-4" />
-                <h3 className="text-xl mb-3">{purpose.title}</h3>
-                <p className="text-sm text-muted-foreground">{purpose.description}</p>
-              </Card>
+      <section className="section-shell section-mist section-rounded-top">
+        <div className="section-inner">
+          <div className="mb-12 grid gap-6 lg:grid-cols-2 lg:items-end">
+            <div><p className="eyebrow">What giving supports</p><h2 className="display-heading">Building the church. Blessing the community.</h2></div>
+            <p className="max-w-lg text-sm leading-6 text-muted-foreground lg:justify-self-end">Every gift helps sustain the shared ministry, outreach, care, and development work of Bethel.</p>
+          </div>
+          <div className="grid border-l border-t border-foreground/20 sm:grid-cols-2 lg:grid-cols-4">
+            {givingPurposes.map((purpose, index) => (
+              <article key={purpose.title} className="min-h-72 border-b border-r border-foreground/20 p-6">
+                <div className="mb-20 flex items-center justify-between"><span className="text-xs text-muted-foreground">0{index + 1}</span><Heart className="h-6 w-6 text-accent" /></div>
+                <h3 className="mb-3 text-2xl uppercase">{purpose.title}</h3>
+                <p className="text-sm leading-6 text-muted-foreground">{purpose.description}</p>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-16 bg-secondary/40">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <div className="inline-block px-4 py-2 bg-accent/20 text-accent-foreground rounded-full text-sm font-semibold mb-4">
-              Ways to Give
-            </div>
-            <h2 className="mb-4">Approved Giving Channels</h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Public web pages should not publish private bank details or sensitive financial identifiers. Please confirm current instructions through the church office.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6 max-w-6xl mx-auto">
-            {givingMethods.map((method) => {
+      <section className="section-shell section-coral">
+        <div className="section-inner">
+          <div className="mb-12"><p className="eyebrow !text-white">Ways to give</p><h2 className="max-w-3xl uppercase text-white">Simple, approved giving channels.</h2></div>
+          <div className="border-t border-white/35">
+            {givingMethods.map((method, index) => {
               const Icon = method.icon;
               return (
-                <Card key={method.title} className="p-6 border-2 shadow-card">
-                  <Icon className="h-8 w-8 text-primary mb-4" />
-                  <h3 className="text-xl mb-3">{method.title}</h3>
-                  <p className="text-sm text-muted-foreground">{method.description}</p>
-                </Card>
+                <div key={method.title} className="grid gap-4 border-b border-white/30 py-7 md:grid-cols-[4rem_15rem_1fr] md:items-center">
+                  <span className="text-xs text-white/55">0{index + 1}</span>
+                  <h3 className="flex items-center gap-3 text-2xl uppercase text-white"><Icon className="h-5 w-5 text-[var(--sun)]" />{method.title}</h3>
+                  <p className="max-w-xl text-sm leading-6 text-white/75">{method.description}</p>
+                </div>
               );
             })}
           </div>
         </div>
       </section>
 
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="grid gap-8 lg:grid-cols-2 max-w-6xl mx-auto">
-            <Card className="p-8 border-2 shadow-elegant">
-              <ShieldCheck className="h-10 w-10 text-primary mb-4" />
-              <h2 className="mb-4">Stewardship and Accountability</h2>
-              <p className="text-muted-foreground leading-relaxed">
-                The master records emphasize financial planning, budgeting, receipts, supporting documents, proper counting procedures, and leadership-approved handling of designated gifts.
-              </p>
-            </Card>
-
-            <Card className="p-8 border-2 shadow-elegant">
-              <Mail className="h-10 w-10 text-primary mb-4" />
-              <h2 className="mb-4">Request Giving Instructions</h2>
-              <p className="text-muted-foreground leading-relaxed mb-6">
-                For MMG, bank transfer, receipts, or designated giving, contact the church office.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-3">
-                <Button asChild variant="hero" size="lg">
-                  <Link to="/contact">Contact Office</Link>
-                </Button>
-                <Button asChild variant="outline" size="lg">
-                  <a href={`mailto:${church.email}?subject=${encodeURIComponent("Giving information request")}`}>
-                    Email Office
-                  </a>
-                </Button>
-              </div>
-            </Card>
-          </div>
+      <section className="section-shell bg-white">
+        <div className="section-inner grid gap-8 lg:grid-cols-2">
+          <div className="border-t border-foreground/20 pt-7"><ShieldCheck className="mb-10 h-8 w-8 text-primary" /><h2 className="mb-5 text-4xl uppercase">Stewardship and accountability</h2><p className="max-w-xl leading-7 text-muted-foreground">Bethel emphasizes budgeting, receipts, supporting documents, proper counting procedures, and leadership-approved handling of designated gifts.</p></div>
+          <div className="border-t border-foreground/20 pt-7"><Mail className="mb-10 h-8 w-8 text-accent" /><h2 className="mb-5 text-4xl uppercase">Giving questions</h2><p className="mb-7 max-w-xl leading-7 text-muted-foreground">For MMG, bank transfer, receipts, or designated giving, contact the church office before sending funds.</p><div className="flex flex-wrap gap-3"><Button asChild variant="default" size="lg"><Link to="/contact">Contact office</Link></Button><Button asChild variant="outline" size="lg"><a href={`mailto:${church.email}?subject=${encodeURIComponent("Giving information request")}`}>Email office</a></Button></div></div>
         </div>
       </section>
-    </div>
+    </main>
   );
 };
 

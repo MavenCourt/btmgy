@@ -1,62 +1,52 @@
-import { CalendarDays, Clock, MapPin } from "lucide-react";
-import { Card } from "@/components/ui/card";
+import { ArrowUpRight, Clock, MapPin } from "lucide-react";
+import { Link } from "react-router-dom";
 import { church, serviceGroups } from "@/data/church";
 
 const ServiceTimes = () => {
   return (
-    <section className="py-16 bg-secondary/40">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <div className="inline-block px-4 py-2 bg-accent/20 text-accent-foreground rounded-full text-sm font-semibold mb-4">
-            Join Us
+    <section className="section-shell section-forest section-rounded-top">
+      <div className="section-inner">
+        <div className="mb-12 grid gap-6 lg:grid-cols-[1fr_0.75fr] lg:items-end">
+          <div>
+            <p className="eyebrow !text-[var(--sun)]">Gather with us</p>
+            <h2 className="max-w-3xl uppercase text-white">Worship, prayer, teaching, and fellowship.</h2>
           </div>
-          <h2 className="mb-4">Service Times & Weekly Programs</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Worship, prayer, Bible study, and ministry gatherings throughout the week.
+          <p className="max-w-xl text-base leading-7 text-white/68 lg:justify-self-end">
+            Bethel gathers throughout the week at 74 Princess Street, Lodge, with selected ministry meetings also held online.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-5 max-w-7xl mx-auto">
-          {serviceGroups.map((group) => (
-            <Card key={group.day} className="p-5 shadow-card hover:shadow-elegant transition-smooth border-2">
-              <div className="flex items-center space-x-2 mb-4">
-                <CalendarDays className="h-5 w-5 text-primary" />
-                <h3 className="text-xl font-bold">{group.day}</h3>
-              </div>
-              <div className="space-y-3">
+        <div className="border-t border-white/25">
+          {serviceGroups.map((group, index) => (
+            <div key={group.day} className="grid gap-5 border-b border-white/20 py-7 md:grid-cols-[5rem_12rem_1fr] md:items-start">
+              <span className="text-xs font-bold text-white/45">0{index + 1}</span>
+              <h3 className="text-3xl uppercase text-white">{group.day}</h3>
+              <div className="grid gap-5 sm:grid-cols-2">
                 {group.services.map((service) => (
-                  <div key={`${group.day}-${service.name}`} className="pb-3 border-b border-border last:border-0 last:pb-0">
-                    <div className="flex items-start gap-2">
-                      <Clock className="h-4 w-4 text-accent mt-1 flex-shrink-0" />
-                      <div>
-                        <div className="font-semibold text-sm">{service.name}</div>
-                        <div className="text-sm text-muted-foreground">{service.time}</div>
-                        {service.note && <div className="text-xs text-muted-foreground mt-1">{service.note}</div>}
-                      </div>
+                  <div key={`${group.day}-${service.name}`}>
+                    <div className="mb-2 flex items-center gap-2 text-sm font-bold text-[var(--sun)]">
+                      <Clock className="h-4 w-4" /> {service.time}
                     </div>
+                    <p className="font-semibold text-white">{service.name}</p>
+                    {service.note && <p className="mt-1 text-xs leading-5 text-white/55">{service.note}</p>}
                   </div>
                 ))}
               </div>
-            </Card>
+            </div>
           ))}
         </div>
 
-        <div className="mt-10 max-w-4xl mx-auto">
-          <Card className="p-6 border-2 shadow-card">
-            <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-              <div className="flex items-start gap-3">
-                <MapPin className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
-                <div>
-                  <h3 className="text-lg font-bold">Location</h3>
-                  <p className="text-muted-foreground">{church.address}</p>
-                </div>
-              </div>
-              <div className="text-sm text-muted-foreground md:text-right">
-                <div>Phone: {church.phoneNumbers.join(" / ")}</div>
-                <div>WhatsApp: {church.whatsapp}</div>
-              </div>
+        <div className="mt-10 flex flex-col justify-between gap-6 md:flex-row md:items-center">
+          <div className="flex items-start gap-3 text-white/75">
+            <MapPin className="mt-1 h-5 w-5 shrink-0 text-[var(--sun)]" />
+            <div>
+              <p className="font-semibold text-white">{church.address}</p>
+              <p className="mt-1 text-sm">Phone {church.phoneNumbers.join(" / ")}</p>
             </div>
-          </Card>
+          </div>
+          <Link to="/visit" className="editorial-link self-start text-white md:self-auto">
+            Plan your visit <ArrowUpRight className="h-4 w-4" />
+          </Link>
         </div>
       </div>
     </section>

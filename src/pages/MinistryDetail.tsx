@@ -1,8 +1,7 @@
+import { ArrowLeft, ArrowUpRight, CalendarDays, Check, UserRound } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
-import { ArrowLeft, CalendarDays, CheckCircle2, UserRound, UsersRound } from "lucide-react";
 import Hero from "@/components/Hero";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import { church, ministries } from "@/data/church";
 
 const MinistryDetail = () => {
@@ -11,104 +10,70 @@ const MinistryDetail = () => {
 
   if (!ministry) {
     return (
-      <div className="min-h-screen pt-32 pb-16">
-        <div className="container mx-auto px-4 max-w-3xl text-center">
-          <h1 className="mb-4">Ministry Not Found</h1>
-          <p className="text-muted-foreground mb-8">
-            The ministry page you requested could not be found.
-          </p>
-          <Button asChild variant="hero" size="lg">
-            <Link to="/ministries">View Ministries</Link>
-          </Button>
-        </div>
-      </div>
+      <main className="min-h-screen bg-white px-5 pb-20 pt-36 text-center">
+        <h1 className="mb-5 uppercase">Ministry not found</h1>
+        <p className="mb-8 text-muted-foreground">The ministry page you requested could not be found.</p>
+        <Button asChild variant="default" size="lg"><Link to="/ministries">View ministries</Link></Button>
+      </main>
     );
   }
 
   return (
-    <div className="min-h-screen pt-20">
+    <main className="min-h-screen">
       <Hero
         title={ministry.name}
-        subtitle="Ministry Department"
+        subtitle="Ministry at Bethel"
         description={ministry.summary}
         image={church.assets.communityService}
-        primaryCTA={{ text: "Contact This Ministry", link: "/contact" }}
+        primaryCTA={{ text: "Connect With This Ministry", link: "/contact" }}
         secondaryCTA={{ text: "All Ministries", link: "/ministries" }}
       />
 
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <Button asChild variant="ghost" className="mb-8">
-              <Link to="/ministries">
-                <ArrowLeft className="h-4 w-4" />
-                All Ministries
-              </Link>
-            </Button>
+      <section className="section-shell bg-white">
+        <div className="section-inner">
+          <Link to="/ministries" className="editorial-link mb-12"><ArrowLeft className="h-4 w-4" /> All ministries</Link>
+          <div className="grid gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
+            <div className="media-frame aspect-[4/5] lg:sticky lg:top-28">
+              <img src={church.assets.communityService} alt={`${ministry.name} at Bethel`} />
+            </div>
+            <div>
+              <p className="eyebrow">Purpose and responsibility</p>
+              <h2 className="display-heading mb-7">Growing people. Serving the church.</h2>
+              <p className="mb-10 text-lg leading-8 text-muted-foreground">{ministry.summary}</p>
 
-            <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-              <div className="space-y-6">
-                <Card className="p-7 border-2 shadow-card">
-                  <div className="flex items-center gap-3 mb-4">
-                    <UserRound className="h-6 w-6 text-primary" />
-                    <h2 className="text-2xl">Leadership</h2>
+              <div className="border-t border-foreground/20">
+                <div className="grid gap-4 border-b border-foreground/20 py-7 sm:grid-cols-[11rem_1fr]">
+                  <div className="flex items-center gap-2 font-heading text-xl font-bold uppercase"><UserRound className="h-5 w-5 text-accent" /> Leadership</div>
+                  <div className="space-y-2 text-sm leading-6 text-muted-foreground">
+                    <p><strong className="text-foreground">Department leader:</strong> {ministry.leader}</p>
+                    <p><strong className="text-foreground">Leadership oversight:</strong> {ministry.oversight}</p>
+                    <p><strong className="text-foreground">Assistants:</strong> {ministry.assistants}</p>
                   </div>
-                  <div className="space-y-3 text-muted-foreground">
-                    <div>
-                      <span className="font-semibold text-foreground">Department Leader:</span> {ministry.leader}
-                    </div>
-                    <div>
-                      <span className="font-semibold text-foreground">Leadership Oversight:</span> {ministry.oversight}
-                    </div>
-                    <div>
-                      <span className="font-semibold text-foreground">Assistants / Notes:</span> {ministry.assistants}
-                    </div>
-                  </div>
-                </Card>
-
-                <Card className="p-7 border-2 shadow-card">
-                  <div className="flex items-center gap-3 mb-4">
-                    <CalendarDays className="h-6 w-6 text-primary" />
-                    <h2 className="text-2xl">Meeting Rhythm</h2>
-                  </div>
-                  <p className="text-muted-foreground leading-relaxed">{ministry.meeting}</p>
-                </Card>
+                </div>
+                <div className="grid gap-4 border-b border-foreground/20 py-7 sm:grid-cols-[11rem_1fr]">
+                  <div className="flex items-center gap-2 font-heading text-xl font-bold uppercase"><CalendarDays className="h-5 w-5 text-accent" /> Meeting rhythm</div>
+                  <p className="text-sm leading-6 text-muted-foreground">{ministry.meeting}</p>
+                </div>
               </div>
 
-              <Card className="p-8 border-2 shadow-elegant">
-                <div className="flex items-center gap-3 mb-5">
-                  <UsersRound className="h-7 w-7 text-primary" />
-                  <h2 className="text-3xl md:text-4xl">Ministry Responsibility</h2>
-                </div>
-                <p className="text-muted-foreground leading-relaxed mb-7">{ministry.summary}</p>
-                <div className="grid sm:grid-cols-2 gap-3">
+              <div className="mt-10">
+                <p className="mb-5 text-xs font-bold uppercase text-primary">Areas of ministry</p>
+                <div className="grid gap-0 border-l border-t border-foreground/20 sm:grid-cols-2">
                   {ministry.responsibilities.map((responsibility) => (
-                    <div key={responsibility} className="flex gap-3 rounded-md bg-secondary/60 p-3">
-                      <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                      <span className="text-sm font-medium">{responsibility}</span>
+                    <div key={responsibility} className="flex min-h-28 gap-3 border-b border-r border-foreground/20 p-5">
+                      <Check className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
+                      <span className="font-semibold">{responsibility}</span>
                     </div>
                   ))}
                 </div>
-              </Card>
+              </div>
+
+              <Button asChild variant="default" size="lg" className="mt-10"><Link to="/contact">Contact this ministry <ArrowUpRight /></Link></Button>
             </div>
           </div>
         </div>
       </section>
-
-      <section className="py-16 bg-secondary/40">
-        <div className="container mx-auto px-4">
-          <Card className="p-8 md:p-12 gradient-primary text-primary-foreground shadow-elegant max-w-4xl mx-auto text-center">
-            <h2 className="mb-4 text-primary-foreground">Take the Next Step</h2>
-            <p className="text-lg mb-8 opacity-90">
-              Use the contact page to ask about meeting details, volunteer opportunities, or ministry membership.
-            </p>
-            <Button asChild variant="accent" size="lg">
-              <Link to="/contact">Contact the Church</Link>
-            </Button>
-          </Card>
-        </div>
-      </section>
-    </div>
+    </main>
   );
 };
 

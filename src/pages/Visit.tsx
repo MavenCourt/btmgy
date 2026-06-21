@@ -83,7 +83,7 @@ const Visit = () => {
   };
 
   return (
-    <div className="min-h-screen pt-20">
+    <main className="min-h-screen">
       <Hero
         title="Plan Your Visit"
         subtitle="You Are Welcome Here"
@@ -96,7 +96,7 @@ const Visit = () => {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            <Card className="p-8 shadow-elegant border-2">
+            <Card className="form-panel">
               <div className="flex items-center gap-3 mb-6">
                 <Clock className="h-7 w-7 text-primary" />
                 <h2 className="text-3xl md:text-4xl">When We Meet</h2>
@@ -120,7 +120,7 @@ const Visit = () => {
               </div>
             </Card>
 
-            <Card className="p-8 shadow-elegant border-2">
+            <Card className="form-panel">
               <div className="flex items-center gap-3 mb-6">
                 <MapPin className="h-7 w-7 text-primary" />
                 <h2 className="text-3xl md:text-4xl">Where We Are</h2>
@@ -192,7 +192,7 @@ const Visit = () => {
               </Button>
             </div>
 
-            <Card className="p-8 border-2 shadow-elegant">
+            <Card className="form-panel">
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div>
                   <Label htmlFor="visitor-name">Name *</Label>
@@ -262,7 +262,7 @@ const Visit = () => {
           </div>
         </div>
       </section>
-    </div>
+    </main>
   );
 };
 

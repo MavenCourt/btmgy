@@ -1,15 +1,16 @@
+import { ArrowUpRight, Mail, ShieldCheck } from "lucide-react";
 import { Link } from "react-router-dom";
-import { Mail, Shield, UserRound, UsersRound } from "lucide-react";
 import Hero from "@/components/Hero";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import { church, leaders, ministries } from "@/data/church";
+
+const portraitColors = ["#df624b", "#f1b938", "#2d6b5b", "#8eb7ad", "#274b67", "#b04c6b"];
 
 const Leadership = () => {
   return (
-    <div className="min-h-screen pt-20">
+    <main className="min-h-screen">
       <Hero
-        title="Leadership & Ministry Teams"
+        title="Our Leadership"
         subtitle="Serving the Body of Christ"
         description="Bethel's leaders serve under the headship of Jesus Christ with responsibility for spiritual oversight, administration, discipleship, care, and outreach."
         image={church.assets.heroWorship}
@@ -17,101 +18,101 @@ const Leadership = () => {
         secondaryCTA={{ text: "Explore Ministries", link: "/ministries" }}
       />
 
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <div className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-semibold mb-4">
-              Current Leadership
+      <section className="section-shell bg-white">
+        <div className="section-inner grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
+          <div>
+            <p className="eyebrow">Called to serve</p>
+            <h2 className="display-heading">Equipping people for a life of faith and purpose.</h2>
+          </div>
+          <p className="max-w-2xl text-lg leading-8 text-muted-foreground lg:justify-self-end">
+            Our senior leadership and administration guide the spiritual, pastoral, and practical life of Bethel with prayer, accountability, and a shared commitment to the gospel.
+          </p>
+        </div>
+      </section>
+
+      <section className="section-shell section-mist section-rounded-top">
+        <div className="section-inner">
+          <div className="mb-10 flex flex-col justify-between gap-5 md:flex-row md:items-end">
+            <div>
+              <p className="eyebrow">Senior leadership</p>
+              <h2 className="display-heading">The people who lead and care.</h2>
             </div>
-            <h2 className="mb-4">Senior Leadership and Administration</h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Current leadership details are based on the 2024 Annual Report and 2025 organizational context.
-            </p>
+            <p className="max-w-sm text-sm leading-6 text-muted-foreground">Portrait photographs can be added to these profiles when the church's approved media is ready.</p>
           </div>
 
-          <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {leaders.map((leader) => (
-              <Card key={leader.name} className="p-6 shadow-card hover:shadow-elegant transition-smooth border-2 h-full">
-                <div className="flex items-start gap-4">
-                  <div className="w-20 h-20 rounded-full gradient-primary flex items-center justify-center flex-shrink-0 text-primary-foreground font-bold text-xl">
-                    {leader.initials || <UserRound className="h-9 w-9" />}
-                  </div>
-                  <div>
-                    <h3 className="text-xl mb-1">{leader.name}</h3>
-                    <div className="text-sm text-accent-foreground font-semibold mb-3">{leader.role}</div>
-                    <p className="text-sm text-muted-foreground mb-3">{leader.bio}</p>
-                    <div className="text-sm">
-                      <span className="font-semibold">Oversight: </span>
-                      <span className="text-muted-foreground">{leader.responsibilities}</span>
-                    </div>
-                  </div>
+          <div className="grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+            {leaders.map((leader, index) => (
+              <article key={leader.name}>
+                <div
+                  className="mb-5 flex aspect-[4/5] items-end overflow-hidden rounded-md p-7"
+                  style={{ backgroundColor: portraitColors[index % portraitColors.length] }}
+                >
+                  <span className="font-heading text-[96px] font-bold leading-none text-white/88 md:text-[120px]">{leader.initials}</span>
                 </div>
-              </Card>
+                <p className="mb-2 text-xs font-bold uppercase text-accent">{leader.role}</p>
+                <h3 className="mb-3 text-2xl uppercase">{leader.name}</h3>
+                <p className="mb-4 text-sm leading-6 text-muted-foreground">{leader.bio}</p>
+                <p className="border-t border-foreground/20 pt-4 text-xs leading-5 text-muted-foreground">
+                  <strong className="text-foreground">Ministry responsibility:</strong> {leader.responsibilities}
+                </p>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-16 bg-secondary/40">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <div className="inline-block px-4 py-2 bg-accent/20 text-accent-foreground rounded-full text-sm font-semibold mb-4">
-              Department Leaders
+      <section className="section-shell section-dark">
+        <div className="section-inner">
+          <div className="mb-12 grid gap-6 lg:grid-cols-[1fr_0.75fr] lg:items-end">
+            <div>
+              <p className="eyebrow !text-[var(--sun)]">Department leaders</p>
+              <h2 className="max-w-3xl uppercase text-white">Shared responsibility across every ministry.</h2>
             </div>
-            <h2 className="mb-4">Ministry Responsibility</h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Department heads work in harmony with the Senior Leader and carry responsibility for ministry organization, activities, reporting, attendance, and finance.
+            <p className="max-w-lg text-sm leading-6 text-white/60 lg:justify-self-end">
+              Department heads work with senior leadership to organize ministry activity, steward resources, care for members, and develop volunteers.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-6xl mx-auto">
-            {ministries.map((ministry) => (
-              <Link key={ministry.id} to={`/ministries/${ministry.id}`}>
-                <Card className="p-5 border-2 shadow-card hover:shadow-elegant transition-smooth h-full">
-                  <div className="flex gap-3">
-                    <UsersRound className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
-                    <div>
-                      <h3 className="text-lg mb-1">{ministry.name}</h3>
-                      <p className="text-sm text-muted-foreground mb-2">
-                        <span className="font-semibold text-foreground">Leader:</span> {ministry.leader}
-                      </p>
-                      <p className="text-sm text-muted-foreground">
-                        <span className="font-semibold text-foreground">Oversight:</span> {ministry.oversight}
-                      </p>
-                    </div>
-                  </div>
-                </Card>
+          <div className="border-t border-white/20">
+            {ministries.map((ministry, index) => (
+              <Link
+                key={ministry.id}
+                to={`/ministries/${ministry.id}`}
+                className="group grid gap-4 border-b border-white/20 py-6 sm:grid-cols-[4rem_1fr_1fr_auto] sm:items-center"
+              >
+                <span className="text-xs text-white/35">{String(index + 1).padStart(2, "0")}</span>
+                <h3 className="text-2xl uppercase text-white transition-colors group-hover:text-[var(--sun)]">{ministry.name}</h3>
+                <div className="text-sm text-white/60">
+                  <p>{ministry.leader}</p>
+                  <p className="mt-1 text-xs text-white/40">Oversight: {ministry.oversight}</p>
+                </div>
+                <ArrowUpRight className="hidden h-5 w-5 text-white transition-transform group-hover:-translate-y-1 group-hover:translate-x-1 sm:block" />
               </Link>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="grid gap-8 lg:grid-cols-2 max-w-6xl mx-auto">
-            <Card className="p-8 border-2 shadow-elegant">
-              <Shield className="h-9 w-9 text-primary mb-4" />
-              <h2 className="mb-4">Governance</h2>
-              <p className="text-muted-foreground leading-relaxed">
-                The Church Leadership is the highest decision-making and policy-making unit for spiritual matters. Church Administration functions as the implementation and management unit under leadership direction.
-              </p>
-            </Card>
-
-            <Card className="p-8 border-2 shadow-elegant">
-              <Mail className="h-9 w-9 text-primary mb-4" />
-              <h2 className="mb-4">Get Connected</h2>
-              <p className="text-muted-foreground leading-relaxed mb-6">
-                For ministry involvement, pastoral care, prayer, or administrative questions, contact the church office and your message will be directed appropriately.
-              </p>
-              <Button asChild variant="hero" size="lg">
-                <Link to="/contact">Contact the Church</Link>
-              </Button>
-            </Card>
+      <section className="section-shell bg-white">
+        <div className="section-inner grid gap-8 lg:grid-cols-2">
+          <div className="border-t border-foreground/20 pt-7">
+            <ShieldCheck className="mb-10 h-8 w-8 text-primary" />
+            <h2 className="mb-5 text-4xl uppercase">Governance</h2>
+            <p className="max-w-xl leading-7 text-muted-foreground">
+              Church Leadership is the highest decision-making and policy-making unit for spiritual matters. Church Administration functions as the implementation and management unit under leadership direction.
+            </p>
+          </div>
+          <div className="border-t border-foreground/20 pt-7">
+            <Mail className="mb-10 h-8 w-8 text-accent" />
+            <h2 className="mb-5 text-4xl uppercase">Connect with a leader</h2>
+            <p className="mb-7 max-w-xl leading-7 text-muted-foreground">
+              Contact the church office for pastoral care, prayer, ministry involvement, or administrative questions. Your message will be directed appropriately.
+            </p>
+            <Button asChild variant="default" size="lg"><Link to="/contact">Contact the church <ArrowUpRight /></Link></Button>
           </div>
         </div>
       </section>
-    </div>
+    </main>
   );
 };
 

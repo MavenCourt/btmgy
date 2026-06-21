@@ -1,10 +1,8 @@
+import { ArrowUpRight, CalendarDays, Play, Quote } from "lucide-react";
 import { Link } from "react-router-dom";
-import { BookOpen, CalendarDays, HeartHandshake, MapPin, PlayCircle, Users } from "lucide-react";
 import Hero from "@/components/Hero";
-import QuickActions from "@/components/QuickActions";
 import ServiceTimes from "@/components/ServiceTimes";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import { church, communityPrograms, eventHighlights, ministries, monthFocus } from "@/data/church";
 
 const Home = () => {
@@ -13,225 +11,161 @@ const Home = () => {
   );
 
   return (
-    <div className="min-h-screen">
+    <main className="min-h-screen">
       <Hero
         title="Bethel Tabernacle Ministries"
-        subtitle={`${church.mottoReference} - ${church.motto}`}
+        subtitle={`${church.mottoReference} · ${church.motto}`}
         description="A Bible-centered church in Georgetown, Guyana, equipping the church and making disciples of change for the glory of Jesus Christ."
         primaryCTA={{ text: "Plan Your Visit", link: "/visit" }}
         secondaryCTA={{ text: "Watch Online", link: "/sermons" }}
         image={church.assets.heroWorship}
       />
 
-      <QuickActions />
-
-      <section className="py-16 bg-card">
-        <div className="container mx-auto px-4">
-          <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] max-w-6xl mx-auto items-center">
-            <div>
-              <div className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-semibold mb-4">
-                Welcome
-              </div>
-              <h2 className="mb-5">A Message from Apostle Cordel Joseph</h2>
-              <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                {church.welcome}
-              </p>
-              <div className="flex flex-col sm:flex-row gap-3">
-                <Button asChild variant="hero" size="lg">
-                  <Link to="/about">Learn About BTM</Link>
-                </Button>
-                <Button asChild variant="outline" size="lg">
-                  <Link to="/contact">Contact Us</Link>
-                </Button>
-              </div>
+      <section className="section-shell bg-white">
+        <div className="section-inner grid gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
+          <div className="media-frame aspect-[4/5] max-h-[620px]">
+            <img src={church.assets.communityService} alt="Bethel church family in fellowship" />
+          </div>
+          <div>
+            <p className="eyebrow">Welcome to Bethel</p>
+            <h2 className="display-heading mb-8">Walking with Jesus. Growing together. Serving our world.</h2>
+            <Quote className="mb-5 h-8 w-8 text-accent" />
+            <p className="mb-6 text-lg leading-8 text-muted-foreground">{church.welcome}</p>
+            <p className="mb-8 font-heading text-xl font-bold uppercase text-primary">Apostle Cordel A. Joseph · Senior Leader</p>
+            <div className="flex flex-wrap gap-3">
+              <Button asChild variant="default" size="lg">
+                <Link to="/about">Our Story</Link>
+              </Button>
+              <Button asChild variant="outline" size="lg">
+                <Link to="/leadership">Meet Our Leaders</Link>
+              </Button>
             </div>
-
-            <Card className="p-8 border-2 shadow-elegant">
-              <div className="grid gap-6">
-                <div>
-                  <h3 className="text-2xl mb-3">Vision</h3>
-                  <p className="text-muted-foreground leading-relaxed">{church.vision}</p>
-                </div>
-                <div>
-                  <h3 className="text-2xl mb-3">Mission</h3>
-                  <p className="text-muted-foreground leading-relaxed">{church.mission}</p>
-                </div>
-              </div>
-            </Card>
           </div>
         </div>
       </section>
 
       <ServiceTimes />
 
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="grid gap-8 lg:grid-cols-2 max-w-6xl mx-auto">
-            <Card className="p-8 border-2 shadow-card">
-              <div className="flex items-center gap-3 mb-5">
-                <CalendarDays className="h-7 w-7 text-primary" />
-                <h2 className="text-3xl md:text-4xl">Upcoming Focus</h2>
-              </div>
-              <p className="text-muted-foreground mb-6">
-                Bethel operates with an annual calendar rhythm that gives each month a clear ministry focus.
-              </p>
-              <div className="grid sm:grid-cols-2 gap-3">
-                {monthFocus.slice(0, 6).map((item) => (
-                  <div key={item.month} className="rounded-md border border-border p-3 bg-background">
-                    <div className="text-sm font-bold text-primary">{item.month}</div>
-                    <div className="text-sm text-muted-foreground">{item.focus}</div>
-                  </div>
-                ))}
-              </div>
-              <Button asChild variant="outline" size="lg" className="mt-6">
-                <Link to="/events">View Full Calendar</Link>
-              </Button>
-            </Card>
-
-            <Card className="p-8 border-2 shadow-card">
-              <div className="flex items-center gap-3 mb-5">
-                <PlayCircle className="h-7 w-7 text-accent" />
-                <h2 className="text-3xl md:text-4xl">Latest Media</h2>
-              </div>
-              <p className="text-muted-foreground mb-6">
-                Watch live services, sermon videos, Bible studies, and special teachings through Bethel's Facebook media page.
-              </p>
-              <div className="aspect-video rounded-lg bg-secondary overflow-hidden mb-6">
-                <img
-                  src={church.assets.communityService}
-                  alt="Bethel Tabernacle Ministries community and worship"
-                  className="h-full w-full object-cover"
-                />
-              </div>
-              <div className="flex flex-col sm:flex-row gap-3">
-                <Button asChild variant="hero" size="lg">
-                  <a href={church.facebookVideosUrl} target="_blank" rel="noopener noreferrer">
-                    Watch Videos
-                  </a>
-                </Button>
-                <Button asChild variant="outline" size="lg">
-                  <Link to="/sermons">Media Page</Link>
-                </Button>
-              </div>
-            </Card>
+      <section className="section-shell bg-white">
+        <div className="section-inner">
+          <div className="mb-10 flex flex-col justify-between gap-6 md:flex-row md:items-end">
+            <div>
+              <p className="eyebrow">Featured teaching</p>
+              <h2 className="display-heading">A word for your week.</h2>
+            </div>
+            <Link to="/sermons" className="editorial-link self-start md:self-auto">
+              More sermons <ArrowUpRight className="h-4 w-4" />
+            </Link>
           </div>
+
+          <a href={church.facebookVideosUrl} target="_blank" rel="noopener noreferrer" className="group relative block overflow-hidden rounded-md">
+            <img
+              src={church.assets.heroWorship}
+              alt="Watch Bethel Tabernacle Ministries teaching"
+              className="h-[420px] w-full object-cover transition-transform duration-500 group-hover:scale-[1.02] md:h-[620px]"
+            />
+            <div className="absolute inset-0 bg-black/25 transition-colors group-hover:bg-black/35" />
+            <span className="absolute left-1/2 top-1/2 flex h-24 w-24 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[var(--sun)] text-[var(--ink)] transition-transform group-hover:scale-105 md:h-32 md:w-32">
+              <Play className="ml-1 h-8 w-8 fill-current md:h-11 md:w-11" />
+            </span>
+            <span className="absolute bottom-6 left-6 text-xs font-bold uppercase text-white md:bottom-10 md:left-10">Watch latest message</span>
+          </a>
         </div>
       </section>
 
-      <section className="py-16 bg-secondary/40">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <div className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-semibold mb-4">
-              Ministries
-            </div>
-            <h2 className="mb-4">Find Your Place to Grow and Serve</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              From children to seniors, every believer has a place to be discipled, encouraged, and equipped.
+      <section className="section-shell section-mist section-rounded-top">
+        <div className="section-inner grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+          <div className="lg:sticky lg:top-28">
+            <p className="eyebrow">Life at Bethel</p>
+            <h2 className="display-heading mb-7">A church for every generation.</h2>
+            <p className="mb-8 max-w-lg text-base leading-7 text-muted-foreground">
+              Every believer has a place to be discipled, encouraged, equipped, and released to serve.
             </p>
+            <div className="media-frame aspect-[4/3]">
+              <img src={church.assets.communityService} alt="People connecting through Bethel ministries" />
+            </div>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-            {featuredMinistries.map((ministry) => (
-              <Link key={ministry.id} to={`/ministries/${ministry.id}`}>
-                <Card className="p-6 hover:shadow-elegant transition-smooth h-full border-2">
-                  <Users className="h-8 w-8 text-primary mb-4" />
-                  <h3 className="text-xl mb-2">{ministry.name}</h3>
-                  <p className="text-sm text-muted-foreground">{ministry.summary}</p>
-                </Card>
+          <div className="border-t border-foreground/20">
+            {featuredMinistries.map((ministry, index) => (
+              <Link
+                key={ministry.id}
+                to={`/ministries/${ministry.id}`}
+                className="group grid gap-4 border-b border-foreground/20 py-7 sm:grid-cols-[3rem_1fr_auto] sm:items-start"
+              >
+                <span className="text-xs font-bold text-muted-foreground">0{index + 1}</span>
+                <div>
+                  <h3 className="mb-3 text-3xl uppercase transition-colors group-hover:text-accent">{ministry.name}</h3>
+                  <p className="max-w-xl text-sm leading-6 text-muted-foreground">{ministry.summary}</p>
+                </div>
+                <ArrowUpRight className="hidden h-5 w-5 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1 sm:block" />
               </Link>
             ))}
-          </div>
-
-          <div className="text-center mt-8">
-            <Button asChild variant="outline" size="lg">
-              <Link to="/ministries">View All Ministries</Link>
-            </Button>
+            <Link to="/ministries" className="editorial-link mt-8">
+              Explore all ministries <ArrowUpRight className="h-4 w-4" />
+            </Link>
           </div>
         </div>
       </section>
 
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] max-w-6xl mx-auto items-center">
+      <section className="section-shell section-dark">
+        <div className="section-inner">
+          <div className="mb-12 grid gap-6 lg:grid-cols-[1fr_0.7fr] lg:items-end">
             <div>
-              <img
-                src={church.assets.churchExterior}
-                alt="Bethel Tabernacle Ministries church exterior"
-                className="rounded-lg shadow-elegant w-full object-cover aspect-[4/3]"
-              />
+              <p className="eyebrow !text-[var(--sun)]">This season at Bethel</p>
+              <h2 className="max-w-4xl uppercase text-white">A year shaped by worship, outreach, and growth.</h2>
             </div>
-            <div>
-              <div className="inline-block px-4 py-2 bg-accent/20 text-accent-foreground rounded-full text-sm font-semibold mb-4">
-                Community Impact
-              </div>
-              <h2 className="mb-5">Serving Georgetown and Beyond</h2>
-              <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                Bethel's ministry life includes worship, discipleship, evangelism, care, financial stewardship, and education support.
-              </p>
-              <div className="grid gap-4 mb-7">
-                {communityPrograms.map((program) => (
-                  <div key={program.name} className="flex gap-3">
-                    <BookOpen className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
-                    <div>
-                      <div className="font-bold">{program.name}</div>
-                      <div className="text-sm text-muted-foreground">{program.summary}</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <Button asChild variant="hero" size="lg">
-                <Link to="/ministries">Explore Ministries</Link>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-16 bg-card">
-        <div className="container mx-auto px-4">
-          <Card className="p-8 md:p-12 gradient-primary text-primary-foreground shadow-elegant max-w-5xl mx-auto">
-            <div className="grid gap-8 md:grid-cols-[1fr_auto] md:items-center">
-              <div>
-                <MapPin className="h-10 w-10 mb-4" />
-                <h2 className="mb-3 text-primary-foreground">Visit Us This Sunday</h2>
-                <p className="text-lg opacity-90">{church.address}</p>
-                <p className="text-lg opacity-90">Sunday Worship Service at 11:00 AM</p>
-              </div>
-              <div className="flex flex-col gap-3 min-w-56">
-                <Button asChild variant="accent" size="lg">
-                  <Link to="/visit">Plan Your Visit</Link>
-                </Button>
-                <Button asChild variant="outline" size="lg" className="bg-primary-foreground/95 hover:bg-primary-foreground text-foreground border-primary-foreground">
-                  <Link to="/prayer">
-                    <HeartHandshake className="h-4 w-4" />
-                    Prayer Request
-                  </Link>
-                </Button>
-              </div>
-            </div>
-          </Card>
-        </div>
-      </section>
-
-      <section className="py-16">
-        <div className="container mx-auto px-4 max-w-5xl">
-          <div className="text-center mb-8">
-            <h2 className="mb-3">Events at a Glance</h2>
-            <p className="text-muted-foreground">
-              Conferences, crusades, youth events, prayer gatherings, special services, and community outreach remain part of the annual ministry rhythm.
+            <p className="max-w-lg text-sm leading-6 text-white/60 lg:justify-self-end">
+              Our ministry calendar gives each month a focus while making room for conferences, youth events, prayer, and community service.
             </p>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {eventHighlights.slice(0, 4).map((event) => (
-              <Card key={event} className="p-5 border-2 text-center shadow-card">
-                <CalendarDays className="h-6 w-6 text-primary mx-auto mb-3" />
-                <div className="font-semibold">{event}</div>
-              </Card>
+
+          <div className="grid border-l border-t border-white/20 sm:grid-cols-2 lg:grid-cols-3">
+            {monthFocus.slice(0, 6).map((item, index) => (
+              <div key={item.month} className="min-h-48 border-b border-r border-white/20 p-6">
+                <span className="mb-10 block text-xs text-white/35">{String(index + 1).padStart(2, "0")}</span>
+                <h3 className="mb-2 text-2xl uppercase text-white">{item.month}</h3>
+                <p className="text-sm text-[var(--sun)]">{item.focus}</p>
+              </div>
             ))}
+          </div>
+
+          <div className="mt-10 flex flex-col justify-between gap-5 border-t border-white/20 pt-8 md:flex-row md:items-center">
+            <div className="flex flex-wrap gap-x-6 gap-y-2 text-xs font-semibold uppercase text-white/55">
+              {eventHighlights.slice(0, 4).map((event) => (
+                <span key={event} className="flex items-center gap-2"><CalendarDays className="h-3.5 w-3.5 text-[var(--sun)]" />{event}</span>
+              ))}
+            </div>
+            <Link to="/events" className="editorial-link self-start text-white md:self-auto">
+              Full calendar <ArrowUpRight className="h-4 w-4" />
+            </Link>
           </div>
         </div>
       </section>
-    </div>
+
+      <section className="section-shell bg-white">
+        <div className="section-inner grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+          <div>
+            <p className="eyebrow">Beyond Sunday</p>
+            <h2 className="display-heading mb-7">Faith that moves into the community.</h2>
+            <p className="mb-9 max-w-xl text-base leading-7 text-muted-foreground">
+              Bethel’s ministry life joins worship and discipleship with compassionate care, practical education, stewardship, and evangelism.
+            </p>
+            <div className="border-t border-foreground/20">
+              {communityPrograms.map((program) => (
+                <div key={program.name} className="grid gap-3 border-b border-foreground/20 py-6 sm:grid-cols-[10rem_1fr]">
+                  <h3 className="text-xl uppercase">{program.name}</h3>
+                  <p className="text-sm leading-6 text-muted-foreground">{program.summary}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="media-frame aspect-[4/5]">
+            <img src={church.assets.churchExterior} alt="Bethel Tabernacle Ministries in Georgetown" />
+          </div>
+        </div>
+      </section>
+    </main>
   );
 };
 

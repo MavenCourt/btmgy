@@ -62,7 +62,7 @@ const PrayerRequest = () => {
   };
 
   return (
-    <div className="min-h-screen pt-20">
+    <main className="min-h-screen">
       <Hero
         title="Prayer Request"
         subtitle="We Are Here to Pray With You"
@@ -93,7 +93,7 @@ const PrayerRequest = () => {
               </Card>
             </div>
 
-            <Card id="form" className="p-8 border-2 shadow-elegant">
+            <Card id="form" className="form-panel">
               <div className="flex items-center gap-3 mb-6">
                 <Sparkles className="h-7 w-7 text-primary" />
                 <h2>Submit Your Request</h2>
@@ -198,7 +198,7 @@ const PrayerRequest = () => {
           </Card>
         </div>
       </section>
-    </div>
+    </main>
   );
 };
 
